@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  repo: Repository;
+  repo: Omit<Repository, 'readme'>;
 }>();
 </script>
 <template>
@@ -8,7 +8,7 @@ const props = defineProps<{
     <template #repo-name>{{ props.repo.name }}</template>
 
     <template #owner-avatar>
-      <NuxtImg
+      <!-- <NuxtImg
         :src="repo.owner.avatar_url"
         width="17"
         height="17"
@@ -16,7 +16,7 @@ const props = defineProps<{
         loading="lazy"
         format="webp"
         class="rounded-full bg-gray-500"
-      />
+      /> -->
     </template>
 
     <template #repo-star>

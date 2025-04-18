@@ -2,7 +2,10 @@
 import VueMasonryWall from "@yeger/vue-masonry-wall";
 import { ref, computed } from "vue";
 
-const { data, status, error } = await useFetch("/api/trending-repos");
+const { data, status, error } = await useFetch("/api/trending-repos", {
+  lazy: true,
+}
+);
 
 const allRepos = computed(() => data.value?.repositories ?? []);
 const selectedLang = ref("All");

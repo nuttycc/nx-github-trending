@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   image: {
-    domains: ["avatars.githubusercontent.com"],
+    // domains: ["avatars.githubusercontent.com"],
   },
   vite: {
     plugins: [tailwindcss()],
