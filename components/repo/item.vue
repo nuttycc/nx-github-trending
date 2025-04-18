@@ -14,6 +14,7 @@ const props = defineProps<{
         height="17"
         :placeholder="[17, 17]"
         loading="lazy"
+        format="webp"
         class="rounded-full bg-gray-500"
       />
     </template>

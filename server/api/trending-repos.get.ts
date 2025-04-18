@@ -2,7 +2,10 @@ export default defineCachedEventHandler(
   async (_event) => {
     const data = await fetchTredndingRepos();
 
-    return data;
+    return {
+      date: data.date,
+      repositories: data.repositories.slice(0, 100)
+    };
   },
   {
     maxAge: 60 * 60,
