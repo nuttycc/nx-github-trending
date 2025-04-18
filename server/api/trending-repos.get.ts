@@ -1,15 +1,22 @@
 export default defineCachedEventHandler(
-  async (_event) => {
+  async (event) => {
     const data = await fetchTredndingRepos();
+    const { page = 0 } = getQuery<{ page?: number }>(event);
+
+    console.log('page', page)
     const filterRepos = [];
     for (const repo of data.repositories) {
       const { readme, ...rest } = repo;
       filterRepos.push(rest);
     }
 
+    const HITS_PER_PAGE = 20;
+
+    const startIndex = HITS_PER_PAGE * page;
+    console.log(startIndex)
     const result = {
       date: data.date,
-      repositories: filterRepos.slice(0, 30),
+      repositories: filterRepos.slice(startIndex, startIndex + HITS_PER_PAGE),
     };
 
     // 计算并打印返回数据的大小
@@ -34,7 +41,11 @@ export default defineCachedEventHandler(
     return result;
   },
   {
-    maxAge: 60 * 10,
+    maxAge: 10,
+    getKey: (event) => {
+      const query = getQuery(event);
+      return `${event.path}?page=${query.page ?? 0}`;
+    },
   }
 );
 

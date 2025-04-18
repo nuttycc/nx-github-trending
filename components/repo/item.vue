@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  repo: Omit<Repository, 'readme'>;
+  repo: Omit<Repository, "readme">;
 }>();
 </script>
 <template>
@@ -24,7 +24,7 @@ const props = defineProps<{
     </template>
 
     <template #repo-lang>
-      {{ repo.language ?? '-' }}
+      {{ repo.language ?? "-" }}
     </template>
 
     <template #repo-url>

@@ -22,6 +22,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/vue-virtual": "^3.13.6",
     "@unhead/vue": "^2.0.3",
+    "@vueuse/core": "^13.1.0",
     "@yeger/vue-masonry-wall": "^5.0.17",
     "eslint": "^9.0.0",
     "nuxt": "^3.16.2",
