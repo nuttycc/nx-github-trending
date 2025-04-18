@@ -18,6 +18,7 @@
     "@nuxt/scripts": "0.11.6",
     "@nuxt/test-utils": "3.17.2",
     "@nuxt/ui": "3.0.2",
+    "@nuxthub/core": "0.8.24",
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/vue-virtual": "^3.13.6",
     "@unhead/vue": "^2.0.3",
@@ -30,5 +31,8 @@
     "vue-router": "^4.5.0",
     "zod": "^3.24.3"
   },
-  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971",
+  "devDependencies": {
+    "wrangler": "^4.12.0"
+  }
 }
