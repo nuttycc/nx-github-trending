@@ -13,6 +13,7 @@ const props = defineProps<{
         width="17"
         height="17"
         :placeholder="[17, 17]"
+        loading="lazy"
         class="rounded-full bg-gray-500"
       />
     </template>
