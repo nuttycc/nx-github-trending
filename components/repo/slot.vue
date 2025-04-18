@@ -23,7 +23,7 @@
       </div>
     </header>
 
-    <div class="text-gray-500 text-sm flex gap-2 items-center">
+    <div class="text-gray-500 text-sm flex gap-2 items-center truncate">
       <span>
         <slot name="repo-url" />
       </span>
