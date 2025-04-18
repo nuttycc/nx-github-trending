@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  font-size: 16px;
+  font-family: 'Inter', 'Material Icons', sans-serif;
+}
