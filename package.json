@@ -31,6 +31,7 @@
     "@nuxt/scripts": "0.11.6",
     "@nuxt/ui": "3.0.2",
     "@nuxthub/core": "0.8.24",
+    "@nuxtjs/tailwindcss": "^6.13.2",
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/vue-virtual": "^3.13.6",
     "@unhead/vue": "^2.0.3",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "3.17.2",
+    "@tailwindcss/postcss": "^4.1.4",
     "@testing-library/vue": "^8.1.0",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^17.4.4",

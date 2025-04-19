@@ -5,11 +5,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
   devtools: {
     enabled: true,
-
     timeline: {
       enabled: true,
     },
   },
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  sourcemap: true,
   app: {
     head: {
       title: 'Github-Trending',
@@ -19,20 +22,12 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.css'],
-  image: {
-    // domains: ["avatars.githubusercontent.com"],
-  },
-  vite: {
-    plugins: [tailwindcss()],
-  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/scripts',
     '@nuxt/test-utils',
-    '@nuxt/ui',
     '@nuxthub/core',
   ],
 });
