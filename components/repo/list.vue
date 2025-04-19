@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VueMasonryWall from "@yeger/vue-masonry-wall";
-import { useIntersectionObserver } from "@vueuse/core";
+import VueMasonryWall from '@yeger/vue-masonry-wall';
+import { useIntersectionObserver } from '@vueuse/core';
 
 // 分页状态
 const page = ref(0);
@@ -13,7 +13,7 @@ onMounted(() => {
 });
 
 // 获取初始数据（SSR 兼容）
-const { data, status, error } = await useFetch("/api/trending-repos", {
+const { data, status, error } = await useFetch('/api/trending-repos', {
   query: {
     page: page.value,
   },
@@ -27,7 +27,7 @@ const repositories = ref<any[]>([]);
 watchEffect(() => {
   if (data.value?.repositories) {
     repositories.value = data.value.repositories;
-    
+
     // 检查是否还有更多数据加载
     if (data.value.repositories.length < 20) {
       hasMore.value = false;
@@ -35,10 +35,10 @@ watchEffect(() => {
   }
 });
 
-const selectedLang = ref("All");
+const selectedLang = ref('All');
 
 const filteredRepos = computed(() => {
-  if (selectedLang.value === "All") {
+  if (selectedLang.value === 'All') {
     return repositories.value;
   }
   return repositories.value.filter((repo) => repo.language === selectedLang.value);
@@ -47,23 +47,23 @@ const filteredRepos = computed(() => {
 // 加载更多数据
 const loadMore = async () => {
   if (isLoadingMore.value || !hasMore.value) return;
-  
-  console.log('Load more...')
+
+  console.log('Load more...');
 
   isLoadingMore.value = true;
   page.value++;
-  
+
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result: any = await $fetch("/api/trending-repos", {
+    const result: any = await $fetch('/api/trending-repos', {
       query: {
         page: page.value,
       },
     });
-    
+
     if (result.repositories.length > 0) {
       repositories.value = [...repositories.value, ...result.repositories];
-      
+
       // 检查是否还有更多数据
       if (result.repositories.length < 20) {
         hasMore.value = false;
@@ -72,7 +72,7 @@ const loadMore = async () => {
       hasMore.value = false;
     }
   } catch (err) {
-    console.error("Failed to load more repos:", err);
+    console.error('Failed to load more repos:', err);
   } finally {
     isLoadingMore.value = false;
   }
@@ -84,7 +84,7 @@ useIntersectionObserver(
   loadMoreRef,
   ([{ isIntersecting }]) => {
     if (isIntersecting) {
-      console.log('IsIntersecting')
+      console.log('IsIntersecting');
       loadMore();
     }
   },
@@ -114,57 +114,56 @@ function handleFilter(lang: string) {
 <template>
   <div class="px-8 py-2">
     <RepoFilter @filter="handleFilter" />
-    <div class="px-4 py-2 text-sm flex gap-2 text-gray-500 dark:text-gray-400">
+    <div class="flex gap-2 px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
       <span>{{ data?.date }}</span>
       <div>
         共 {{ filteredRepos.length }} 个仓库
         <span v-if="selectedLang !== 'All'">({{ selectedLang }})</span>
       </div>
     </div>
-    <div
-      v-if="status === 'pending' && page === 0"
-      class="flex justify-center items-center p-8"
-    >
+    <div v-if="status === 'pending' && page === 0" class="flex items-center justify-center p-8">
       <div class="flex flex-col items-center gap-2">
         <div
-          class="w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full animate-spin"
+          class="h-8 w-8 animate-spin rounded-full border-4 border-violet-500 border-t-transparent"
         />
-        <div class="text-lg text-gray-600 dark:text-gray-300">
-          正在加载仓库数据...
-        </div>
+        <div class="text-lg text-gray-600 dark:text-gray-300">正在加载仓库数据...</div>
       </div>
     </div>
-    <div
-      v-else-if="error"
-      class="text-red-500 p-4"
-    >
+    <div v-else-if="error" class="p-4 text-red-500">
       {{ error.message }}
     </div>
     <template v-else>
       <!-- 骨架屏 - 在数据已经获取但客户端尚未水合完成时显示 -->
-      <div v-if="repositories.length > 0 && !isHydrated" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 py-4">
-        <div v-for="i in 8" :key="i" class="animate-pulse h-[250px] rounded-sm border dark:border-gray-600">
+      <div
+        v-if="repositories.length > 0 && !isHydrated"
+        class="grid grid-cols-1 gap-4 px-2 py-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        <div
+          v-for="i in 8"
+          :key="i"
+          class="h-[250px] animate-pulse rounded-sm border dark:border-gray-600"
+        >
           <!-- 仓库名骨架 -->
-          <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded m-3 w-3/4" />
-          
+          <div class="m-3 h-6 w-3/4 rounded bg-gray-200 dark:bg-gray-700" />
+
           <!-- 统计信息骨架 -->
           <div class="flex justify-end gap-2 px-3">
-            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-8" />
-            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-12" />
+            <div class="h-4 w-8 rounded bg-gray-200 dark:bg-gray-700" />
+            <div class="h-4 w-12 rounded bg-gray-200 dark:bg-gray-700" />
           </div>
-          
+
           <!-- URL骨架 -->
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded mx-3 my-4 w-5/6" />
-          
+          <div class="mx-3 my-4 h-4 w-5/6 rounded bg-gray-200 dark:bg-gray-700" />
+
           <!-- 描述骨架 -->
           <div class="space-y-2 px-3">
-            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
-            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-4/6" />
+            <div class="h-3 w-full rounded bg-gray-200 dark:bg-gray-700" />
+            <div class="h-3 w-5/6 rounded bg-gray-200 dark:bg-gray-700" />
+            <div class="h-3 w-4/6 rounded bg-gray-200 dark:bg-gray-700" />
           </div>
         </div>
       </div>
-      
+
       <!-- 真实数据渲染 -->
       <VueMasonryWall
         v-if="isHydrated"
@@ -181,18 +180,24 @@ function handleFilter(lang: string) {
           <RepoItem :repo="repo" />
         </template>
       </VueMasonryWall>
-      
+
       <!-- 加载更多指示器 -->
-      <div v-if="hasMore" ref="loadMoreRef" class="py-8 flex justify-center">
+      <div v-if="hasMore" ref="loadMoreRef" class="flex justify-center py-8">
         <div v-if="isLoadingMore" class="flex items-center gap-2">
-          <div class="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+          <div
+            class="h-5 w-5 animate-spin rounded-full border-2 border-violet-500 border-t-transparent"
+          />
           <span class="text-gray-600 dark:text-gray-300">加载更多...</span>
         </div>
-        <div v-else class="h-8" /> <!-- 占位元素，用于触发Intersection Observer -->
+        <div v-else class="h-8" />
+        <!-- 占位元素，用于触发Intersection Observer -->
       </div>
-      
+
       <!-- 无更多数据提示 -->
-      <div v-else-if="repositories.length > 0" class="text-center py-6 text-gray-500 dark:text-gray-400">
+      <div
+        v-else-if="repositories.length > 0"
+        class="py-6 text-center text-gray-500 dark:text-gray-400"
+      >
         没有更多仓库了
       </div>
     </template>

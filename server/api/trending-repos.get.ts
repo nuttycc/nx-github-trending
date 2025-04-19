@@ -3,7 +3,7 @@ export default defineCachedEventHandler(
     const data = await fetchTredndingRepos();
     const { page = 0 } = getQuery<{ page?: number }>(event);
 
-    console.log('page', page)
+    console.log('page', page);
     const filterRepos = [];
     for (const repo of data.repositories) {
       const { readme, ...rest } = repo;
@@ -13,7 +13,7 @@ export default defineCachedEventHandler(
     const HITS_PER_PAGE = 20;
 
     const startIndex = HITS_PER_PAGE * page;
-    console.log(startIndex)
+    console.log(startIndex);
     const result = {
       date: data.date,
       repositories: filterRepos.slice(startIndex, startIndex + HITS_PER_PAGE),
@@ -28,15 +28,11 @@ export default defineCachedEventHandler(
     const byteSize = bytes.length;
 
     console.log(
-      `[DEBUG] Response data size: ${byteSize} bytes (${(
-        byteSize / 1024
-      ).toFixed(2)} KB)`
+      `[DEBUG] Response data size: ${byteSize} bytes (${(byteSize / 1024).toFixed(2)} KB)`
     );
 
     // 额外打印字符数，用于比较
-    console.log(
-      `[DEBUG] JSON string length (character count): ${jsonString.length} characters`
-    );
+    console.log(`[DEBUG] JSON string length (character count): ${jsonString.length} characters`);
 
     return result;
   },
@@ -50,9 +46,7 @@ export default defineCachedEventHandler(
 );
 
 async function fetchTredndingRepos() {
-  const data = (await $fetch(
-    "https://popular.forgithub.com/index.json"
-  )) as TrendingReposData;
+  const data = (await $fetch('https://popular.forgithub.com/index.json')) as TrendingReposData;
 
   return data;
 }

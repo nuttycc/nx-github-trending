@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  repo: Omit<Repository, "readme">;
+  repo: Omit<Repository, 'readme'>;
 }>();
 </script>
 <template>
@@ -24,14 +24,14 @@ const props = defineProps<{
     </template>
 
     <template #repo-lang>
-      {{ repo.language ?? "-" }}
+      {{ repo.language ?? '-' }}
     </template>
 
     <template #repo-url>
       <NuxtLink
         :to="`https://github.com/${repo.full_name}`"
         target="_blank"
-        class="underline hover:text-gray-400 truncate block"
+        class="block truncate underline hover:text-gray-400"
         >https://github.com/{{ repo.full_name }}</NuxtLink
       >
     </template>

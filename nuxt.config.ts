@@ -1,8 +1,8 @@
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: '2024-11-01',
   devtools: {
     enabled: true,
 
@@ -10,7 +10,15 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  css: ["~/assets/css/main.css"],
+  app: {
+    head: {
+      title: 'Github-Trending',
+      htmlAttrs: {
+        lang: 'en',
+      },
+    },
+  },
+  css: ['~/assets/css/main.css'],
   image: {
     // domains: ["avatars.githubusercontent.com"],
   },
@@ -18,13 +26,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   modules: [
-    "@nuxt/eslint",
-    "@nuxt/fonts",
-    "@nuxt/icon",
-    "@nuxt/image",
-    "@nuxt/scripts",
-    "@nuxt/test-utils",
-    "@nuxt/ui",
-    "@nuxthub/core",
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxt/test-utils',
+    '@nuxt/ui',
+    '@nuxthub/core',
   ],
 });

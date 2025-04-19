@@ -62,9 +62,8 @@ interface Permissions {
   pull: boolean;
 }
 
-
 // interface Topics {
-  
+
 // }
 
 interface License {
