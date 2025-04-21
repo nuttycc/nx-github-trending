@@ -2,6 +2,18 @@
 const props = defineProps<{
   repo: Omit<Repository, 'readme'>;
 }>();
+
+function formatLargeNum(num: number) {
+  const k = 1000;
+  const sizes = ['', 'K', 'M', 'B'];
+  const i = Math.floor(Math.log(num) / Math.log(k));
+
+  if (i < 1) {
+    return num.toString();
+  }
+
+  return (num / Math.pow(k, i)).toFixed(0) + sizes[i];
+}
 </script>
 <template>
   <RepoSlot>
@@ -20,7 +32,7 @@ const props = defineProps<{
     </template>
 
     <template #repo-star>
-      {{ repo.stargazers_count }}
+      {{ formatLargeNum(repo.stargazers_count) }}
     </template>
 
     <template #repo-lang>
@@ -31,7 +43,7 @@ const props = defineProps<{
       <NuxtLink
         :to="`https://github.com/${repo.full_name}`"
         target="_blank"
-        class="block truncate underline hover:text-gray-400"
+        class="block truncate underline md:w-80"
         >https://github.com/{{ repo.full_name }}</NuxtLink
       >
     </template>

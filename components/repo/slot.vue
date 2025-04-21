@@ -2,7 +2,7 @@
   <article
     class="flex h-fit w-full cursor-default flex-col gap-3 rounded-sm border bg-white py-4 pr-1 pl-3 transition-shadow duration-300 ease-out hover:inset-ring-1 hover:inset-ring-violet-600 dark:border-gray-600 dark:bg-gray-800"
   >
-    <header class="flex flex-row items-center justify-between">
+    <header class="flex flex-row items-center justify-between gap-1">
       <div class="truncate font-medium text-violet-500">
         <slot name="repo-name" />
       </div>
@@ -22,7 +22,7 @@
       </div>
     </header>
 
-    <div class="flex items-center gap-2 truncate text-sm text-gray-500">
+    <div class="flex items-center gap-2 text-sm text-gray-500">
       <span>
         <slot name="repo-url" />
       </span>
