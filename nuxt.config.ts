@@ -30,4 +30,10 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxthub/core',
   ],
+  runtimeConfig: {
+    testServer: 'test111',
+    public: {
+      testPublic: 'public1111',
+    },
+  },
 });

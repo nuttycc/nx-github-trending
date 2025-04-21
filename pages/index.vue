@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const runtimeConfig = useRuntimeConfig();
+
+console.log('[Client env] ', runtimeConfig);
+</script>
 
 <template>
   <div>

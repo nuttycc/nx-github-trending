@@ -1,5 +1,8 @@
 export default defineCachedEventHandler(
   async (event) => {
+    const env = useRuntimeConfig(event);
+
+    console.log('[Server env] ', env);
     const data = await fetchTredndingRepos();
     const { page = 0 } = getQuery<{ page?: number }>(event);
 
@@ -13,7 +16,6 @@ export default defineCachedEventHandler(
     const HITS_PER_PAGE = 20;
 
     const startIndex = HITS_PER_PAGE * page;
-    console.log(startIndex);
     const result = {
       date: data.date,
       repositories: filterRepos.slice(startIndex, startIndex + HITS_PER_PAGE),
@@ -37,7 +39,7 @@ export default defineCachedEventHandler(
     return result;
   },
   {
-    maxAge: 10,
+    maxAge: 60 * 60 * 3,
     getKey: (event) => {
       const query = getQuery(event);
       return `${event.path}?page=${query.page ?? 0}`;
