@@ -88,7 +88,7 @@ useIntersectionObserver(
       loadMore();
     }
   },
-  { threshold: 0.9 }
+  { threshold: 0.1 }
 );
 
 const masonryOptions = {

@@ -1,6 +1,6 @@
 <template>
   <article
-    class="flex h-fit w-full cursor-default flex-col gap-3 rounded-sm border bg-white py-4 pr-1 pl-3 transition-shadow duration-300 ease-out hover:inset-ring-1 hover:inset-ring-violet-600 dark:border-gray-600 dark:bg-gray-800"
+    class="flex h-fit w-full cursor-default flex-col gap-3 rounded-xs border bg-white py-4 pr-1 pl-3 transition-shadow duration-300 ease-out hover:inset-ring-1 hover:inset-ring-violet-600 dark:border-gray-600 dark:bg-gray-800"
   >
     <header class="flex flex-row items-center justify-between gap-1">
       <div class="truncate font-medium text-violet-500">
